@@ -1,5 +1,6 @@
 package com.rosscoryanderson.kanban.Services;
 
+import com.rosscoryanderson.kanban.Exceptions.ProjectIdException;
 import com.rosscoryanderson.kanban.Repository.ProjectRepository;
 import com.rosscoryanderson.kanban.domain.Project;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,11 @@ public class ProjectService {
 
     public Project saveOrUpdateProject(Project project) {
 
-        // Logic
-
-        return projectRepository.save(project);
+        try {
+            project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+            return projectRepository.save(project);
+        } catch (Exception e) {
+            throw new ProjectIdException("Project ID '"+project.getProjectIdentifier().toUpperCase()+"' already exists");
+        }
     }
 }

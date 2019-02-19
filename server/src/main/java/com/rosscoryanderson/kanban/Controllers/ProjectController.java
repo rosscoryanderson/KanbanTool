@@ -1,5 +1,6 @@
 package com.rosscoryanderson.kanban.Controllers;
 
+
 import com.rosscoryanderson.kanban.Services.MapValidationErrorService;
 import com.rosscoryanderson.kanban.Services.ProjectService;
 import com.rosscoryanderson.kanban.domain.Project;
@@ -28,6 +29,7 @@ public class ProjectController {
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
 
+
     @PostMapping("")
     public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result) {
 
@@ -35,6 +37,6 @@ public class ProjectController {
         if(errorMap != null) return errorMap;
 
         Project returnProject = projectService.saveOrUpdateProject(project);
-        return new ResponseEntity<Project>(project, HttpStatus.CREATED);
+        return new ResponseEntity<Project>(returnProject, HttpStatus.CREATED);
     }
 }
