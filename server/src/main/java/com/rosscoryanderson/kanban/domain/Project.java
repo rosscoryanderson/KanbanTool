@@ -1,7 +1,11 @@
 package com.rosscoryanderson.kanban.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -10,13 +14,22 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message="Project name is required")
     private String projectName;
+    @NotBlank(message="Project Identifier is required")
+    @Size(min=4, max=5, message="Please use 4 to 5 characters")
+    @Column(updatable=false, unique=true)
     private String projectIdentifier;
+    @NotBlank(message="Project description is required")
     private String description;
+    @JsonFormat(pattern="dd-mm-yyyy")
     private Date startDate;
+    @JsonFormat(pattern="dd-mm-yyyy")
     private Date endDate;
 
+    @JsonFormat(pattern="dd-mm-yyyy")
     private Date createdAt;
+    @JsonFormat(pattern="dd-mm-yyyy")
     private Date updatedAt;
 
     public Project() {
