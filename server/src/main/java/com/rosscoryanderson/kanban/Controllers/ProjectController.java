@@ -1,5 +1,6 @@
 package com.rosscoryanderson.kanban.Controllers;
 
+import com.rosscoryanderson.kanban.Services.MapValidationErrorService;
 import com.rosscoryanderson.kanban.Services.ProjectService;
 import com.rosscoryanderson.kanban.domain.Project;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +25,14 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private MapValidationErrorService mapValidationErrorService;
+
     @PostMapping("")
     public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result) {
 
-        if(result.hasErrors()) {
-
-            Map<String, String> errorMap = new HashMap<>();
-
-            for(FieldError error: result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
-        }
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationErrorService(result);
+        if(errorMap != null) return errorMap;
 
         Project returnProject = projectService.saveOrUpdateProject(project);
         return new ResponseEntity<Project>(project, HttpStatus.CREATED);
