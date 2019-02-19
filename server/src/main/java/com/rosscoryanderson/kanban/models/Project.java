@@ -1,4 +1,4 @@
-package com.rosscoryanderson.kanban.domain;
+package com.rosscoryanderson.kanban.models;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;

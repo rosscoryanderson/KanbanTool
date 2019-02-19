@@ -1,4 +1,4 @@
-package com.rosscoryanderson.kanban.Exceptions;
+package com.rosscoryanderson.kanban.exceptions;
 
 public class ProjectIdExceptionResponse {
 

@@ -1,4 +1,4 @@
-package com.rosscoryanderson.kanban.Exceptions;
+package com.rosscoryanderson.kanban.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

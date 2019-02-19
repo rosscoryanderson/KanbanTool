@@ -1,4 +1,4 @@
-package com.rosscoryanderson.kanban.Services;
+package com.rosscoryanderson.kanban.services;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
-package com.rosscoryanderson.kanban.Repository;
+package com.rosscoryanderson.kanban.repository;
 
 
-import com.rosscoryanderson.kanban.domain.Project;
+import com.rosscoryanderson.kanban.models.Project;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
-package com.rosscoryanderson.kanban.Services;
+package com.rosscoryanderson.kanban.services;
 
-import com.rosscoryanderson.kanban.Exceptions.ProjectIdException;
-import com.rosscoryanderson.kanban.Repository.ProjectRepository;
-import com.rosscoryanderson.kanban.domain.Project;
+import com.rosscoryanderson.kanban.exceptions.ProjectIdException;
+import com.rosscoryanderson.kanban.repository.ProjectRepository;
+import com.rosscoryanderson.kanban.models.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
