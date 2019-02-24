@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard';
 import Navbar from './components/Layout/Navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import AddProject from './components/Project/AddProject';
 
 class App extends Component {
   render() {
@@ -12,7 +13,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <Dashboard />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/add-project" component={AddProject} />
         </div>
       </Router>
     );
