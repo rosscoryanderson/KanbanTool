@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
+import { createProject } from "../../actions/projectActions"
 
 class AddProject extends Component {
     constructor(){
@@ -8,17 +11,14 @@ class AddProject extends Component {
             projectName: "",
             projectIdentifier: "",
             description: "",
-            start_date: "",
-            end_date: ""
+            startDate: "",
+            endDate: ""
         }
         
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-
     
-
-
     onChange(event) {
         this.setState({[event.target.name]: event.target.value })
     }
@@ -29,10 +29,10 @@ class AddProject extends Component {
             projectName: this.state.projectName,
             projectIdentifier: this.state.projectIdentifier,
             description: this.state.description,
-            start_date: this.state.start_date,
-            end_date: this.state.end_date
+            startDate: this.state.startDate,
+            endDate: this.state.endDate
         }
-        console.log(newProject)
+        this.props.createProject(newProject, this.props.history);
     }
     
     render() {
@@ -77,8 +77,8 @@ class AddProject extends Component {
                                     <input 
                                         type="date" 
                                         className="form-control form-control-lg" 
-                                        name="start_date"
-                                        value={this.state.start_date}
+                                        name="startDate"
+                                        value={this.state.startDate}
                                         onChange={this.onChange} />
                                 </div>
                                 <h6>Estimated End Date</h6>
@@ -86,8 +86,8 @@ class AddProject extends Component {
                                     <input 
                                         type="date" 
                                         className="form-control form-control-lg" 
-                                        name="end_date"
-                                        value={this.state.end_date}
+                                        name="endDate"
+                                        value={this.state.endDate}
                                         onChange={this.onChange} />
                                 </div>
                                 <input type="submit" className="btn btn-primary btn-block mt-4" />
@@ -100,4 +100,10 @@ class AddProject extends Component {
         )
     }
 }
-export default AddProject;
+
+AddProject.propTypes = {
+    createProject: PropTypes.func.isRequired,
+}
+
+export default connect(null, {createProject})(AddProject);
+
